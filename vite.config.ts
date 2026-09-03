@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/classical-guitar-strings-configurator/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,3 +14,4 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
 });
+

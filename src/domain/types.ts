@@ -6,12 +6,22 @@ export type StrategyKey =
   | 'ROYAL_CLASSIC'
   | 'GENERIC';
 
+export interface StringPhysicalSpec {
+  stringNumber: 1 | 2 | 3 | 4 | 5 | 6;
+  note: string;
+  gaugeMm: number;
+  gaugeInch: number;
+  tensionKg: number;
+  tensionLbs: number;
+}
+
 export interface TrebleString {
   id: string;
   name: string;
   code: string;
   material: string;
   tone: string;
+  specs?: Record<string, StringPhysicalSpec[]>;
 }
 
 export interface BassString {
@@ -20,11 +30,13 @@ export interface BassString {
   code: string;
   material: string;
   tone: string;
+  specs?: Record<string, StringPhysicalSpec[]>;
 }
 
 export interface TensionOption {
   label: string;
   code: string;
+  standardLevel?: 'Low' | 'Normal' | 'High' | 'Extra High' | 'Mixed';
 }
 
 export interface Brand {
@@ -57,11 +69,16 @@ export interface CustomSet {
   generatedCode: string;
   explanation: string;
   createdAt: number;
+  totalTensionKg?: number;
+  totalTensionLbs?: number;
 }
 
 export interface GeneratedSetResult {
   code: string;
   explanation: string;
+  specs?: StringPhysicalSpec[];
+  totalTensionKg?: number;
+  totalTensionLbs?: number;
 }
 
 export interface MacroMaterials {
@@ -75,3 +92,4 @@ export interface SeedData {
   brands: Brand[];
   decisionMatrix: DecisionRule[];
 }
+

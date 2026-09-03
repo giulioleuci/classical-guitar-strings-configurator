@@ -25,40 +25,58 @@ function App() {
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {});
     }
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-amber-800/20">
+      {/* Skip to main content for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none"
+      >
+        Vai al contenuto principale
+      </a>
+
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 shadow-lg shadow-amber-500/20">
-              <Guitar className="h-5 w-5 text-black" />
+      <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-background/85 backdrop-blur-md transition-all">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3 sm:px-6">
+          <div className="flex items-center gap-3">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-[#b84a20] to-[#802f10] text-white shadow-md shadow-primary/20 ring-1 ring-white/20">
+              <Guitar className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-base font-bold leading-none tracking-tight">StringLab</h1>
-              <p className="text-[10px] text-muted-foreground">Corde chitarra classica</p>
+              <h1 className="font-display text-lg font-bold tracking-wider text-[#2a1810]">
+                STRINGLAB
+              </h1>
+              <p className="font-serif text-xs italic text-muted-foreground">
+                Configuratore Liutario per Chitarra Classica
+              </p>
             </div>
           </div>
           <div
             className={cn(
-              'flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
+              'flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium transition-all shadow-xs',
               online
-                ? 'bg-emerald-500/10 text-emerald-400'
-                : 'bg-amber-500/10 text-amber-400'
+                ? 'border-emerald-600/20 bg-emerald-500/10 text-emerald-800'
+                : 'border-primary/30 bg-primary/10 text-primary'
             )}
           >
+            <span
+              className={cn(
+                'h-2 w-2 rounded-full',
+                online ? 'bg-emerald-500 animate-pulse' : 'bg-primary'
+              )}
+            />
             {online ? <Wifi className="h-3.5 w-3.5" /> : <WifiOff className="h-3.5 w-3.5" />}
-            <span className="hidden sm:inline">{online ? 'Online' : 'Offline'}</span>
+            <span className="hidden sm:inline font-sans font-medium">{online ? 'Offline Ready' : 'Offline'}</span>
           </div>
         </div>
       </header>
 
-      {/* Content */}
-      <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-4">
+      {/* Main Content Area */}
+      <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6">
         {tab === 'builder' && <SetBuilderView />}
         {tab === 'advisor' && <DecisionAdvisorView />}
         {tab === 'catalog' && <CatalogExplorerView />}
@@ -67,8 +85,8 @@ function App() {
       </main>
 
       {/* Bottom Navigation */}
-      <nav className="sticky bottom-0 z-40 border-t border-border/60 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-2xl items-stretch justify-around px-2 py-1.5">
+      <nav className="sticky bottom-0 z-40 border-t border-stone-200/80 bg-card/90 backdrop-blur-xl shadow-lg shadow-stone-900/5">
+        <div className="mx-auto flex max-w-3xl items-stretch justify-around px-2 py-1.5">
           {TABS.map((t) => {
             const Icon = t.icon;
             const active = tab === t.id;
@@ -77,13 +95,17 @@ function App() {
                 key={t.id}
                 onClick={() => setTab(t.id)}
                 className={cn(
-                  'flex flex-1 flex-col items-center gap-1 rounded-lg py-2 transition-all',
-                  active ? 'text-amber-400' : 'text-muted-foreground hover:text-foreground'
+                  'relative flex flex-1 flex-col items-center gap-1 rounded-xl py-1.5 transition-all active:scale-95 duration-200',
+                  active
+                    ? 'text-primary font-semibold'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
               >
-                <Icon className={cn('h-5 w-5 transition-transform', active && 'scale-110')} />
-                <span className="text-[10px] font-medium">{t.label}</span>
-                {active && <div className="h-0.5 w-6 rounded-full bg-amber-500" />}
+                <Icon className={cn('h-5 w-5 transition-transform duration-200', active && 'scale-110 stroke-[2.25]')} />
+                <span className="text-[11px] tracking-tight">{t.label}</span>
+                {active && (
+                  <span className="absolute -bottom-1 h-0.5 w-7 rounded-full bg-primary" />
+                )}
               </button>
             );
           })}

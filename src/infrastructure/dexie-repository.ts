@@ -14,13 +14,16 @@ import { SEED_DATA } from './seed-data';
 export class DexieStringRepository implements IStringRepository {
   private async ensureSeeded(): Promise<void> {
     const db = getDB();
-    const seeded = await db.meta.get('seeded');
-    if (seeded?.value === true) return;
+    const versionRow = await db.meta.get('data_version');
+    if (versionRow?.value === 2) return;
 
     await db.transaction('rw', db.brands, db.decisionMatrix, db.meta, async () => {
+      await db.brands.clear();
       await db.brands.bulkPut(SEED_DATA.brands);
+      await db.decisionMatrix.clear();
       await db.decisionMatrix.bulkPut(SEED_DATA.decisionMatrix);
       await db.meta.put({ key: 'seeded', value: true });
+      await db.meta.put({ key: 'data_version', value: 2 });
       await db.meta.put({ key: 'macroMaterials', value: SEED_DATA.macroMaterials });
       await db.meta.put({ key: 'standardTensions', value: SEED_DATA.standardTensions });
     });

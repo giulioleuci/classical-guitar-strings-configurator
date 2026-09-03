@@ -1,8 +1,8 @@
 const CACHE_NAME = 'stringlab-v1';
 const APP_SHELL = [
-  '/',
-  '/index.html',
-  '/manifest.json',
+  './',
+  './index.html',
+  './manifest.json',
 ];
 
 self.addEventListener('install', (event) => {

@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 30 20% 92%;
-    --card: 0 0% 9%;
-    --card-foreground: 30 20% 92%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 30 20% 92%;
-    --primary: 38 92% 50%;
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 30 20% 92%;
-    --muted: 0 0% 14%;
-    --muted-foreground: 30 10% 60%;
-    --accent: 38 60% 20%;
-    --accent-foreground: 30 20% 92%;
+    --background: 38 30% 97%;
+    --foreground: 18 35% 15%;
+    --card: 40 40% 99%;
+    --card-foreground: 18 35% 15%;
+    --popover: 40 40% 99%;
+    --popover-foreground: 18 35% 15%;
+    --primary: 16 72% 44%;
+    --primary-foreground: 40 50% 98%;
+    --secondary: 34 24% 92%;
+    --secondary-foreground: 18 30% 22%;
+    --muted: 36 20% 93%;
+    --muted-foreground: 22 14% 42%;
+    --accent: 16 50% 93%;
+    --accent-foreground: 16 72% 35%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 38 92% 50%;
-    --chart-1: 38 92% 50%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 32 20% 88%;
+    --input: 32 20% 88%;
+    --ring: 16 72% 44%;
+    --chart-1: 16 72% 44%;
+    --chart-2: 32 65% 50%;
+    --chart-3: 160 30% 36%;
+    --chart-4: 205 35% 42%;
+    --chart-5: 280 25% 45%;
     --radius: 0.75rem;
   }
 }
@@ -36,30 +36,42 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overscroll-behavior: none;
-  }
-  html {
-    -webkit-tap-highlight-color: transparent;
+    background-color: #faf7f2;
+    background-image: 
+      radial-gradient(ellipse at 85% -10%, rgba(184, 74, 32, 0.06) 0px, transparent 60%),
+      radial-gradient(ellipse at 15% 110%, rgba(212, 139, 56, 0.05) 0px, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.028 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+    background-repeat: repeat;
   }
 }
 
-/* Smooth scrollbar */
+/* Tabular figures for aligned numerical metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Smooth custom scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
-  border-radius: 3px;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));

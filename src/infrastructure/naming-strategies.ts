@@ -1,5 +1,65 @@
 import type { INamingStrategy } from '@/domain/contracts';
-import type { BassString, TrebleString, TensionOption, Brand, GeneratedSetResult } from '@/domain/types';
+import type {
+  BassString,
+  TrebleString,
+  TensionOption,
+  Brand,
+  GeneratedSetResult,
+  StringPhysicalSpec,
+} from '@/domain/types';
+
+export function resolveStringSpecs(
+  treble: TrebleString,
+  bass: BassString,
+  tension: TensionOption
+): { specs: StringPhysicalSpec[]; totalTensionKg: number; totalTensionLbs: number } {
+  const findSpecs = (
+    stringObj: TrebleString | BassString,
+    tensionCode: string,
+    tensionLabel: string
+  ): StringPhysicalSpec[] => {
+    if (!stringObj.specs) return [];
+    const keys = Object.keys(stringObj.specs);
+    if (keys.length === 0) return [];
+
+    // Exact key match (e.g. 'R', '45', 'Normal', 'High')
+    if (stringObj.specs[tensionCode]) return stringObj.specs[tensionCode];
+    if (stringObj.specs[tensionLabel]) return stringObj.specs[tensionLabel];
+
+    // Case-insensitive or partial match
+    const lowerCode = tensionCode.toLowerCase();
+    const lowerLabel = tensionLabel.toLowerCase();
+    const matchedKey = keys.find(
+      (k) =>
+        k.toLowerCase() === lowerCode ||
+        k.toLowerCase() === lowerLabel ||
+        lowerLabel.includes(k.toLowerCase()) ||
+        k.toLowerCase().includes(lowerCode)
+    );
+    if (matchedKey && stringObj.specs[matchedKey]) {
+      return stringObj.specs[matchedKey];
+    }
+
+    // Default to first available
+    return stringObj.specs[keys[0]] || [];
+  };
+
+  const trebleSpecs = findSpecs(treble, tension.code, tension.label);
+  const bassSpecs = findSpecs(bass, tension.code, tension.label);
+
+  const combinedSpecs: StringPhysicalSpec[] = [...trebleSpecs, ...bassSpecs].sort(
+    (a, b) => a.stringNumber - b.stringNumber
+  );
+
+  const totalTensionKg = combinedSpecs.reduce((acc, s) => acc + (s.tensionKg || 0), 0);
+  const totalTensionLbs = combinedSpecs.reduce((acc, s) => acc + (s.tensionLbs || 0), 0);
+
+  return {
+    specs: combinedSpecs,
+    totalTensionKg: Math.round(totalTensionKg * 10) / 10,
+    totalTensionLbs: Math.round(totalTensionLbs * 10) / 10,
+  };
+}
 
 export class SavarezStrategy implements INamingStrategy {
   generateSetName(
@@ -16,7 +76,8 @@ export class SavarezStrategy implements INamingStrategy {
       `Savarez — Codice formato da: Bassi "${bass.name}" (${bassCode}) + ` +
       `Cantini "${treble.name}" (${trebleCode}) + Tensione "${tension.label}" (${tensionCode}). ` +
       `Risultato: ${code}.`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -27,15 +88,24 @@ export class DAddarioStrategy implements INamingStrategy {
     tension: TensionOption,
     _brand: Brand
   ): GeneratedSetResult {
-    const bassCode = bass.code || 'EJ';
+    let bassCode = bass.code || 'EJ';
     const tensionCode = tension.code || '45';
-    const trebleCode = treble.code || '';
+    let trebleCode = treble.code || '';
+
+    // Handle XT series (e.g. XTC45 / XTC45FF)
+    if (bass.id === 'd_b3' || bass.name.includes('XT')) {
+      bassCode = 'XTC';
+    } else if (bass.id === 'd_b2' || bass.name.includes('Dynacore')) {
+      if (!trebleCode) trebleCode = 'C';
+    }
+
     const code = `${bassCode}${tensionCode}${trebleCode}`.trim();
     const explanation =
       `D'Addario — Codice formato da: Serie Bassi "${bass.name}" (${bassCode}) + ` +
-      `Tensione "${tension.label}" (${tensionCode}) + Cantini "${treble.name}" (${trebleCode || 'standard'}). ` +
+      `Tensione "${tension.label}" (${tensionCode}) + Cantini "${treble.name}" (${trebleCode || 'Clear Nylon standard'}). ` +
       `Risultato: ${code}.`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -43,17 +113,18 @@ export class AugustineStrategy implements INamingStrategy {
   generateSetName(
     treble: TrebleString,
     bass: BassString,
-    _tension: TensionOption,
+    tension: TensionOption,
     _brand: Brand
   ): GeneratedSetResult {
     const trebleName = treble.name || treble.code;
     const bassName = bass.name || bass.code;
     const code = `${trebleName} ${bassName}`.trim();
     const explanation =
-      `Augustine — Il nome del set combina il tipo di cantino "${trebleName}" ` +
-      `con il colore dei bassi "${bassName}". La tensione è inclusa nel colore dei bassi. ` +
+      `Augustine — Il set combina la tipologia di cantini "${trebleName}" ` +
+      `con la calibratura cromatica dei bassi "${bassName}". ` +
       `Risultato: ${code}.`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -70,7 +141,8 @@ export class LaBellaStrategy implements INamingStrategy {
     const explanation =
       `La Bella — Codice formato da: Serie "${seriesCode}" + Tensione "${tensionName}". ` +
       `Risultato: ${code}.`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -85,9 +157,10 @@ export class RoyalClassicStrategy implements INamingStrategy {
     const tensionName = tension.code || tension.label;
     const code = `${seriesName} ${tensionName}`.trim();
     const explanation =
-      `Royal Classic — Nome formato da: Serie Commerciale "${seriesName}" + Tensione "${tensionName}". ` +
+      `Royal Classic — Nome formato da: Serie "${seriesName}" + Tensione "${tensionName}". ` +
       `Risultato: ${code}.`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -102,7 +175,8 @@ export class GenericStrategy implements INamingStrategy {
     const explanation =
       `Set personalizzato per ${brand.name}: Cantini "${treble.name}" + ` +
       `Bassi "${bass.name}" + Tensione "${tension.label}".`;
-    return { code, explanation };
+    const resolved = resolveStringSpecs(treble, bass, tension);
+    return { code, explanation, ...resolved };
   }
 }
 
@@ -122,3 +196,4 @@ export function getNamingStrategy(strategyKey: string): INamingStrategy {
       return new GenericStrategy();
   }
 }
+

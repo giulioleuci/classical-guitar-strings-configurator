@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Plus, Trash2, Pencil, Download, Upload, X } from 'lucide-react';
 import { useStringLab } from '@/hooks/use-string-lab';
 import { useToast } from '@/hooks/use-toast';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -19,7 +19,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import type { Brand, BassString, TrebleString, TensionOption } from '@/domain/types';
+import type { Brand, TensionOption } from '@/domain/types';
 
 function genId(prefix: string): string {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
@@ -41,7 +41,7 @@ function StringEditDialog({
   const [open, setOpen] = useState(false);
   const [name, setName] = useState(initial.name);
   const [code, setCode] = useState(initial.code);
-  const [material, setMaterial] = useState(initial.material);
+  const [material, setMaterial] = useState(initial.material || materials[0] || '');
   const [tone, setTone] = useState(initial.tone);
 
   const handleSave = () => {
@@ -53,26 +53,28 @@ function StringEditDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-card border-stone-200/80 shadow-lg">
         <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>Inserisci i dettagli della corda.</AlertDialogDescription>
+          <AlertDialogTitle className="font-display text-lg tracking-tight text-[#2a1810]">{title}</AlertDialogTitle>
+          <AlertDialogDescription className="font-serif italic text-muted-foreground">
+            Inserisci o modifica i dettagli del modello di corda.
+          </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="space-y-3">
+        <div className="space-y-3 py-2">
           <div>
-            <Label className="mb-1 block">Nome</Label>
-            <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="es. Alliance" />
+            <Label className="mb-1 block text-xs font-semibold">Nome modello</Label>
+            <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="es. Alliance / Cantiga" />
           </div>
           <div>
-            <Label className="mb-1 block">Codice</Label>
-            <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="es. A" />
+            <Label className="mb-1 block text-xs font-semibold">Codice identificativo</Label>
+            <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="es. A / 510" />
           </div>
           <div>
-            <Label className="mb-1 block">Materiale</Label>
+            <Label className="mb-1 block text-xs font-semibold">Materiale standardizzato</Label>
             <select
               value={material}
               onChange={(e) => setMaterial(e.target.value)}
-              className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm shadow-sm"
+              className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm shadow-2xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
             >
               {materials.map((m) => (
                 <option key={m} value={m}>{m}</option>
@@ -80,13 +82,13 @@ function StringEditDialog({
             </select>
           </div>
           <div>
-            <Label className="mb-1 block">Timbro</Label>
-            <Input value={tone} onChange={(e) => setTone(e.target.value)} placeholder="es. Brillante, proiezione elevata" />
+            <Label className="mb-1 block text-xs font-semibold">Descrizione timbrica</Label>
+            <Input value={tone} onChange={(e) => setTone(e.target.value)} placeholder="es. Brillante, grande sustain" />
           </div>
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel>Annulla</AlertDialogCancel>
-          <AlertDialogAction onClick={handleSave}>Salva</AlertDialogAction>
+          <AlertDialogCancel className="border-stone-300">Annulla</AlertDialogCancel>
+          <AlertDialogAction className="bg-primary hover:bg-[#b0451e] text-white font-semibold" onClick={handleSave}>Salva</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -106,7 +108,7 @@ function TensionEditDialog({
 
   const handleSave = () => {
     if (!label.trim()) return;
-    onSave({ label: label.trim(), code: code.trim() });
+    onSave({ label: label.trim(), code: code.trim(), standardLevel: 'Normal' });
     setLabel('');
     setCode('');
     setOpen(false);
@@ -115,24 +117,26 @@ function TensionEditDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-card border-stone-200/80 shadow-lg">
         <AlertDialogHeader>
-          <AlertDialogTitle>Nuova tensione</AlertDialogTitle>
-          <AlertDialogDescription>Aggiungi un'opzione di tensione.</AlertDialogDescription>
+          <AlertDialogTitle className="font-display text-lg tracking-tight text-[#2a1810]">Nuova Tensione</AlertDialogTitle>
+          <AlertDialogDescription className="font-serif italic text-muted-foreground">
+            Aggiungi un'opzione di tensione per questa marca.
+          </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="space-y-3">
+        <div className="space-y-3 py-2">
           <div>
-            <Label className="mb-1 block">Etichetta</Label>
-            <Input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="es. Normal Tension" />
+            <Label className="mb-1 block text-xs font-semibold">Etichetta</Label>
+            <Input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="es. Alta (High Tension - 46)" />
           </div>
           <div>
-            <Label className="mb-1 block">Codice</Label>
-            <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="es. 45" />
+            <Label className="mb-1 block text-xs font-semibold">Codice</Label>
+            <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="es. 46 / J / High" />
           </div>
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel>Annulla</AlertDialogCancel>
-          <AlertDialogAction onClick={handleSave}>Salva</AlertDialogAction>
+          <AlertDialogCancel className="border-stone-300">Annulla</AlertDialogCancel>
+          <AlertDialogAction className="bg-primary hover:bg-[#b0451e] text-white font-semibold" onClick={handleSave}>Salva</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -145,36 +149,38 @@ function BrandEditor({ brand }: { brand: Brand }) {
   const macroMats = lab.macroMaterials || { basses: [], trebles: [] };
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className="border-stone-200/80 bg-card/95 shadow-xs backdrop-blur-xs">
+      <CardHeader className="border-b border-stone-200/60 pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">{brand.name}</CardTitle>
-          <Badge variant="outline">{brand.strategyKey}</Badge>
+          <CardTitle className="font-display text-lg font-bold tracking-tight text-[#2a1810]">{brand.name}</CardTitle>
+          <Badge variant="outline" className="border-primary/30 font-mono text-xs text-primary">{brand.strategyKey}</Badge>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5 p-4">
         {/* Trebles */}
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <Label>Cantini ({brand.trebles.length})</Label>
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Cantini ({brand.trebles.length})
+            </Label>
             <StringEditDialog
-              title="Nuovo cantino"
+              title="Nuovo Cantino"
               initial={{ name: '', code: '', material: macroMats.trebles[0] || '', tone: '' }}
               materials={macroMats.trebles}
               onSave={(data) => {
                 lab.addTrebleString(brand.id, { id: genId('t'), ...data });
                 toast({ title: 'Cantino aggiunto' });
               }}
-              trigger={<Button size="sm" variant="outline"><Plus className="mr-1 h-3.5 w-3.5" />Aggiungi</Button>}
+              trigger={<Button size="sm" variant="outline" className="h-7 text-xs border-stone-300 hover:bg-primary/10 hover:text-primary"><Plus className="mr-1 h-3 w-3" />Aggiungi</Button>}
             />
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             {brand.trebles.map((t) => (
-              <div key={t.id} className="flex items-center gap-2 rounded-md border border-border/60 px-3 py-2">
+              <div key={t.id} className="flex items-center gap-2 rounded-xl border border-stone-200/60 bg-background/80 px-3 py-2 shadow-2xs">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">{t.name}</span>
-                    {t.code && <Badge variant="secondary" className="text-xs">{t.code}</Badge>}
+                    <span className="text-sm font-semibold text-[#2a1810]">{t.name}</span>
+                    {t.code && <Badge variant="outline" className="text-[10px] border-primary/30 text-primary font-mono tabular-nums">{t.code}</Badge>}
                   </div>
                   <p className="text-xs text-muted-foreground">{t.material}</p>
                 </div>
@@ -183,7 +189,7 @@ function BrandEditor({ brand }: { brand: Brand }) {
                   initial={t}
                   materials={macroMats.trebles}
                   onSave={(data) => {
-                    lab.updateTrebleString(brand.id, { id: t.id, ...data });
+                    lab.updateTrebleString(brand.id, { id: t.id, ...data, specs: t.specs });
                     toast({ title: 'Cantino aggiornato' });
                   }}
                   trigger={<Button size="icon" variant="ghost" className="h-7 w-7"><Pencil className="h-3.5 w-3.5" /></Button>}
@@ -191,7 +197,7 @@ function BrandEditor({ brand }: { brand: Brand }) {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-7 w-7 text-destructive"
+                  className="h-7 w-7 text-destructive hover:bg-destructive/10"
                   onClick={() => {
                     lab.deleteTrebleString(brand.id, t.id);
                     toast({ title: 'Cantino eliminato' });
@@ -204,30 +210,32 @@ function BrandEditor({ brand }: { brand: Brand }) {
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-stone-200/60" />
 
         {/* Basses */}
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <Label>Bassi ({brand.basses.length})</Label>
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Bassi ({brand.basses.length})
+            </Label>
             <StringEditDialog
-              title="Nuovo basso"
+              title="Nuovo Basso"
               initial={{ name: '', code: '', material: macroMats.basses[0] || '', tone: '' }}
               materials={macroMats.basses}
               onSave={(data) => {
                 lab.addBassString(brand.id, { id: genId('b'), ...data });
                 toast({ title: 'Basso aggiunto' });
               }}
-              trigger={<Button size="sm" variant="outline"><Plus className="mr-1 h-3.5 w-3.5" />Aggiungi</Button>}
+              trigger={<Button size="sm" variant="outline" className="h-7 text-xs border-stone-300 hover:bg-primary/10 hover:text-primary"><Plus className="mr-1 h-3 w-3" />Aggiungi</Button>}
             />
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             {brand.basses.map((b) => (
-              <div key={b.id} className="flex items-center gap-2 rounded-md border border-border/60 px-3 py-2">
+              <div key={b.id} className="flex items-center gap-2 rounded-xl border border-stone-200/60 bg-background/80 px-3 py-2 shadow-2xs">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">{b.name}</span>
-                    {b.code && <Badge variant="secondary" className="text-xs">{b.code}</Badge>}
+                    <span className="text-sm font-semibold text-[#2a1810]">{b.name}</span>
+                    {b.code && <Badge variant="outline" className="text-[10px] border-primary/30 text-primary font-mono tabular-nums">{b.code}</Badge>}
                   </div>
                   <p className="text-xs text-muted-foreground">{b.material}</p>
                 </div>
@@ -236,7 +244,7 @@ function BrandEditor({ brand }: { brand: Brand }) {
                   initial={b}
                   materials={macroMats.basses}
                   onSave={(data) => {
-                    lab.updateBassString(brand.id, { id: b.id, ...data });
+                    lab.updateBassString(brand.id, { id: b.id, ...data, specs: b.specs });
                     toast({ title: 'Basso aggiornato' });
                   }}
                   trigger={<Button size="icon" variant="ghost" className="h-7 w-7"><Pencil className="h-3.5 w-3.5" /></Button>}
@@ -244,7 +252,7 @@ function BrandEditor({ brand }: { brand: Brand }) {
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-7 w-7 text-destructive"
+                  className="h-7 w-7 text-destructive hover:bg-destructive/10"
                   onClick={() => {
                     lab.deleteBassString(brand.id, b.id);
                     toast({ title: 'Basso eliminato' });
@@ -257,64 +265,69 @@ function BrandEditor({ brand }: { brand: Brand }) {
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-stone-200/60" />
 
         {/* Tensions */}
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <Label>Tensioni ({brand.tensions.length})</Label>
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Tensioni ({brand.tensions.length})
+            </Label>
             <TensionEditDialog
               onSave={(data) => {
                 lab.addTension(brand.id, data);
                 toast({ title: 'Tensione aggiunta' });
               }}
-              trigger={<Button size="sm" variant="outline"><Plus className="mr-1 h-3.5 w-3.5" />Aggiungi</Button>}
+              trigger={<Button size="sm" variant="outline" className="h-7 text-xs border-stone-300 hover:bg-primary/10 hover:text-primary"><Plus className="mr-1 h-3 w-3" />Aggiungi</Button>}
             />
           </div>
           <div className="flex flex-wrap gap-2">
             {brand.tensions.map((t, i) => (
-              <div key={`${t.label}-${i}`} className="flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1">
-                <span className="text-xs font-medium">{t.label}</span>
-                <Badge variant="secondary" className="text-xs">{t.code}</Badge>
+              <div key={`${t.label}-${i}`} className="flex items-center gap-1.5 rounded-full border border-stone-200/80 bg-background px-3 py-1 text-xs shadow-2xs">
+                <span className="font-semibold text-[#2a1810]">{t.label}</span>
+                <Badge variant="outline" className="border-primary/30 font-mono text-[10px] text-primary tabular-nums">{t.code}</Badge>
                 <button
                   onClick={() => {
                     lab.deleteTension(brand.id, i);
                     toast({ title: 'Tensione eliminata' });
                   }}
-                  className="ml-1 text-destructive hover:text-destructive/80"
+                  className="ml-1 text-destructive/80 hover:text-destructive transition-colors"
                 >
-                  <X className="h-3 w-3" />
+                  <X className="h-3.5 w-3.5" />
                 </button>
               </div>
             ))}
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-stone-200/60" />
 
         {/* Delete brand */}
         <div className="flex justify-end">
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive" size="sm">
+              <Button variant="destructive" size="sm" className="h-8 text-xs font-semibold shadow-xs">
                 <Trash2 className="mr-1 h-3.5 w-3.5" />
                 Elimina marca
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="bg-card border-stone-200/80">
               <AlertDialogHeader>
-                <AlertDialogTitle>Eliminare {brand.name}?</AlertDialogTitle>
-                <AlertDialogDescription>Questa azione non può essere annullata. Tutti i dati della marca verranno persi.</AlertDialogDescription>
+                <AlertDialogTitle className="font-display text-lg tracking-tight text-[#2a1810]">Eliminare {brand.name}?</AlertDialogTitle>
+                <AlertDialogDescription className="font-serif italic text-muted-foreground">
+                  Questa azione è definitiva. Tutti i modelli di cantini, bassi e tensioni associati verranno cancellati dal database locale.
+                </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Annulla</AlertDialogCancel>
+                <AlertDialogCancel className="border-stone-300">Annulla</AlertDialogCancel>
                 <AlertDialogAction
+                  className="bg-destructive hover:bg-destructive/90 text-white font-semibold"
                   onClick={() => {
                     lab.deleteBrand(brand.id);
                     toast({ title: 'Marca eliminata' });
                   }}
                 >
-                  Elimina
+                  Elimina definitivamente
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -351,20 +364,24 @@ function NewBrandDialog({ onCreated }: { onCreated: () => void }) {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button size="sm" variant="outline"><Plus className="mr-1 h-3.5 w-3.5" />Nuova marca</Button>
+        <Button size="sm" variant="outline" className="border-stone-300 hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-150 active:scale-95">
+          <Plus className="mr-1.5 h-4 w-4" />Nuova marca
+        </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-card border-stone-200/80">
         <AlertDialogHeader>
-          <AlertDialogTitle>Nuova marca</AlertDialogTitle>
-          <AlertDialogDescription>Crea una marca personalizzata. Usa la strategia generica per i codici.</AlertDialogDescription>
+          <AlertDialogTitle className="font-display text-lg tracking-tight text-[#2a1810]">Nuovo Produttore</AlertDialogTitle>
+          <AlertDialogDescription className="font-serif italic text-muted-foreground">
+            Aggiungi una nuova marca di corde al catalogo personale.
+          </AlertDialogDescription>
         </AlertDialogHeader>
-        <div>
-          <Label className="mb-1 block">Nome marca</Label>
-          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="es. Hannabach" />
+        <div className="py-2">
+          <Label className="mb-1 block text-xs font-semibold">Nome del produttore</Label>
+          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="es. Hannabach / Knobloch / Aquila" />
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel>Annulla</AlertDialogCancel>
-          <AlertDialogAction onClick={handleCreate}>Crea</AlertDialogAction>
+          <AlertDialogCancel className="border-stone-300">Annulla</AlertDialogCancel>
+          <AlertDialogAction className="bg-primary hover:bg-[#b0451e] text-white font-semibold" onClick={handleCreate}>Crea</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -386,7 +403,7 @@ export function DatabaseEditorView() {
     a.download = `stringlab-backup-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
-    toast({ title: 'Backup esportato', description: 'File JSON scaricato.' });
+    toast({ title: 'Backup JSON esportato con successo' });
   };
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -397,10 +414,10 @@ export function DatabaseEditorView() {
       try {
         const json = ev.target?.result as string;
         await lab.importJSON(json);
-        toast({ title: 'Backup importato', description: 'Dati ripristinati correttamente.' });
+        toast({ title: 'Dati ripristinati correttamente' });
         setTick((t) => t + 1);
       } catch {
-        toast({ title: 'Importazione fallita', description: 'File JSON non valido.', variant: 'destructive' });
+        toast({ title: 'Importazione non riuscita', description: 'Il file selezionato non è un JSON valido.', variant: 'destructive' });
       }
     };
     reader.readAsText(file);
@@ -409,7 +426,7 @@ export function DatabaseEditorView() {
   const handleExportCSV = () => {
     const sets = lab.savedSets || [];
     if (!sets.length) {
-      toast({ title: 'Nessun set salvato', description: 'Salva almeno un set prima di esportare.' });
+      toast({ title: 'Nessun set salvato', description: 'Salva almeno un set prima di esportare in CSV.' });
       return;
     }
     const csv = lab.exportCSV(sets);
@@ -420,30 +437,30 @@ export function DatabaseEditorView() {
     a.download = `stringlab-sets-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
-    toast({ title: 'CSV esportato' });
+    toast({ title: 'CSV esportato con successo' });
   };
 
   return (
-    <div className="space-y-4 pb-4" key={tick}>
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-bold tracking-tight">Gestione Dati</h2>
-          <p className="text-sm text-muted-foreground">Modifica marche, corde e tensioni. Backup completo.</p>
-        </div>
+    <div className="space-y-6 pb-6" key={tick}>
+      <div className="space-y-1">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-[#2a1810]">Gestione Database</h2>
+        <p className="font-serif text-sm italic text-muted-foreground text-balance">
+          Personalizza catalogo, materiali, tensioni ed effettua backup completi.
+        </p>
       </div>
 
-      {/* Import / Export */}
-      <Card>
-        <CardContent className="flex flex-wrap gap-2 p-4">
-          <Button onClick={handleExport} variant="outline" size="sm">
+      {/* Import / Export Card */}
+      <Card className="border-stone-200/80 bg-card/95 shadow-xs backdrop-blur-xs">
+        <CardContent className="flex flex-wrap gap-2.5 p-4">
+          <Button onClick={handleExport} variant="outline" size="sm" className="border-stone-300 hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-150 active:scale-95">
             <Download className="mr-1.5 h-4 w-4" />Esporta JSON
           </Button>
-          <Button onClick={handleExportCSV} variant="outline" size="sm">
+          <Button onClick={handleExportCSV} variant="outline" size="sm" className="border-stone-300 hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-150 active:scale-95">
             <Download className="mr-1.5 h-4 w-4" />Esporta CSV
           </Button>
           <label>
             <input type="file" accept="application/json" onChange={handleImport} className="hidden" />
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" asChild className="cursor-pointer border-stone-300 hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-150 active:scale-95">
               <span><Upload className="mr-1.5 h-4 w-4" />Importa JSON</span>
             </Button>
           </label>
@@ -452,11 +469,12 @@ export function DatabaseEditorView() {
       </Card>
 
       {/* Brand editors */}
-      <div className="max-h-[60vh] space-y-3 overflow-y-auto overscroll-contain">
-          {brands.map((b) => (
-            <BrandEditor key={b.id} brand={b} />
-          ))}
+      <div className="max-h-[60vh] space-y-4 overflow-y-auto overscroll-contain pr-0.5">
+        {brands.map((b) => (
+          <BrandEditor key={b.id} brand={b} />
+        ))}
       </div>
     </div>
   );
 }
+
