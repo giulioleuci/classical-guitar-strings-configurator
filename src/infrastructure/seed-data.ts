@@ -4,7 +4,8 @@ export const SEED_DATA: SeedData = {
   macroMaterials: {
     basses: [
       'Nylon / Argento (Silver-plated)',
-      'Composito / Dynacore (Silver-plated)',
+      'Composito (Silver-plated)',
+      'Dynacore (Silver-plated)',
       'Gold / Ottone (Brass-plated)',
       'Levigati / Lisci (Polished)',
     ],
@@ -131,7 +132,7 @@ export const SEED_DATA: SeedData = {
           id: 's_b2',
           name: 'Cantiga',
           code: '510',
-          material: 'Composito / Dynacore (Silver-plated)',
+          material: 'Composito (Silver-plated)',
           tone: 'Anima moderna con ampio spettro armonico e sustain prolungato',
           specs: {
             R: [
@@ -155,7 +156,7 @@ export const SEED_DATA: SeedData = {
           id: 's_b3',
           name: 'Cantiga Premium',
           code: '510P',
-          material: 'Composito / Dynacore (Silver-plated)',
+          material: 'Composito (Silver-plated)',
           tone: 'Raffinamento estremo delle armoniche, precisione e durata eccezionale',
           specs: {
             R: [
@@ -310,10 +311,29 @@ export const SEED_DATA: SeedData = {
         },
         {
           id: 'd_b2',
-          name: 'Dynacore / Composite',
+          name: 'Composite Core',
           code: 'EJ',
-          material: 'Composito / Dynacore (Silver-plated)',
-          tone: 'Anima multifilamento dinamica, bassi ricchi, rotondi e potenti',
+          material: 'Composito (Silver-plated)',
+          tone: 'Anima in composito per risposta dei bassi elevata, timbro audace e proiettato',
+          specs: {
+            '45': [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.89, gaugeInch: 0.0350, tensionKg: 6.7, tensionLbs: 14.7 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.12, gaugeInch: 0.0440, tensionKg: 6.9, tensionLbs: 15.3 },
+            ],
+            '46': [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.1, tensionLbs: 15.6 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.3, tensionLbs: 16.0 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.17, gaugeInch: 0.0460, tensionKg: 7.5, tensionLbs: 16.5 },
+            ],
+          },
+        },
+        {
+          id: 'd_b3',
+          name: 'Dynacore',
+          code: 'EJ',
+          material: 'Dynacore (Silver-plated)',
+          tone: 'Esclusiva anima multifilamento Dynacore per intonazione imbattibile, risposta dinamica flessibile e suono ricco',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -328,21 +348,21 @@ export const SEED_DATA: SeedData = {
           },
         },
         {
-          id: 'd_b3',
+          id: 'd_b4',
           name: 'XT Composite (Coated)',
-          code: 'XT',
-          material: 'Composito / Dynacore (Silver-plated)',
-          tone: 'Trattamento idrofobo per durata estesa mantenendo timbro naturale',
+          code: 'XTC',
+          material: 'Composito (Silver-plated)',
+          tone: 'Trattamento idrofobo XT con anima in composito per durata estesa e suono naturale',
           specs: {
             '45': [
-              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
-              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.89, gaugeInch: 0.0350, tensionKg: 7.0, tensionLbs: 15.4 },
-              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.12, gaugeInch: 0.0440, tensionKg: 6.6, tensionLbs: 14.6 },
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.89, gaugeInch: 0.0350, tensionKg: 6.7, tensionLbs: 14.7 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.12, gaugeInch: 0.0440, tensionKg: 6.9, tensionLbs: 15.3 },
             ],
             '46': [
-              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 8.0, tensionLbs: 17.6 },
-              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.5, tensionLbs: 16.5 },
-              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.17, gaugeInch: 0.0460, tensionKg: 7.1, tensionLbs: 15.7 },
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.1, tensionLbs: 15.6 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.3, tensionLbs: 16.0 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.17, gaugeInch: 0.0460, tensionKg: 7.5, tensionLbs: 16.5 },
             ],
           },
         },
@@ -569,7 +589,7 @@ export const SEED_DATA: SeedData = {
           id: 'l_b2',
           name: 'Vivace Basses',
           code: 'Vivace',
-          material: 'Composito / Dynacore (Silver-plated)',
+          material: 'Composito (Silver-plated)',
           tone: 'Progettati con micro-avvolgimento per bilanciarsi con cantini in carbonio',
           specs: {
             'Medium Hard': [
@@ -706,7 +726,7 @@ export const SEED_DATA: SeedData = {
           id: 'rc_b3',
           name: 'JG Soloist Basses',
           code: 'JG',
-          material: 'Composito / Dynacore (Silver-plated)',
+          material: 'Composito (Silver-plated)',
           tone: 'Progettati per chitarristi da concerto con massima tenuta di dinamica',
           specs: {
             High: [
@@ -756,7 +776,7 @@ export const SEED_DATA: SeedData = {
       id: 'dm_3',
       toneGoal: 'Suono brillante, moderno, massima proiezione e sustain (Carbonio)',
       trebleMat: 'Carbonio (Fluorocarbonio)',
-      bassMat: 'Composito / Dynacore (Silver-plated)',
+      bassMat: 'Dynacore (Silver-plated)',
       tension: 'Alta (High / Hard)',
       recommendations: {
         savarez: '510AJ Cantiga Alliance / 510AJP Premium',
@@ -768,9 +788,9 @@ export const SEED_DATA: SeedData = {
     },
     {
       id: 'dm_4',
-      toneGoal: 'Brillante e trasparente ma morbido (Titanio / Composito)',
+      toneGoal: 'Brillante e trasparente ma morbido (Titanio / Dynacore)',
       trebleMat: 'Titanio (Titanium Nylon)',
-      bassMat: 'Composito / Dynacore (Silver-plated)',
+      bassMat: 'Dynacore (Silver-plated)',
       tension: 'Media (Normal / Medium)',
       recommendations: {
         savarez: '510MRP Cantiga Premium Creation',
@@ -778,6 +798,20 @@ export const SEED_DATA: SeedData = {
         augustine: 'Imperial Red (Custom)',
         labella: 'Vivace Medium Hard',
         royalclassic: 'JG Titanium/Carbon High',
+      },
+    },
+    {
+      id: 'dm_5',
+      toneGoal: 'Risposta dei bassi elevata con timbro audace e proiettato (Composito)',
+      trebleMat: 'Nylon Tradizionale (Clear)',
+      bassMat: 'Composito (Silver-plated)',
+      tension: 'Media (Normal / Medium)',
+      recommendations: {
+        savarez: '510CR Cantiga',
+        daddario: 'EJ45C Pro-Arté Composite',
+        augustine: 'Classic Red',
+        labella: '2001 Medium Hard',
+        royalclassic: 'Sonata Normal',
       },
     },
   ],

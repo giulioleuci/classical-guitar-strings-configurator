@@ -93,10 +93,13 @@ export class DAddarioStrategy implements INamingStrategy {
     let trebleCode = treble.code || '';
 
     // Handle XT series (e.g. XTC45 / XTC45FF)
-    if (bass.id === 'd_b3' || bass.name.includes('XT')) {
+    if (bass.id === 'd_b4' || bass.code === 'XTC' || bass.name.includes('XT')) {
       bassCode = 'XTC';
-    } else if (bass.id === 'd_b2' || bass.name.includes('Dynacore')) {
+    } else if (bass.id === 'd_b2' || bass.name.includes('Composite Core') || (bass.material && bass.material.includes('Composito'))) {
+      // Composite Core series uses 'C' suffix (e.g. EJ45C)
       if (!trebleCode) trebleCode = 'C';
+    } else if (bass.id === 'd_b3' || bass.name.includes('Dynacore')) {
+      // Dynacore series retains normal codes combined with trebles like FF or TT (e.g. EJ45TT, EJ46FF)
     }
 
     const code = `${bassCode}${tensionCode}${trebleCode}`.trim();
