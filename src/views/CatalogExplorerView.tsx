@@ -14,7 +14,8 @@ const MATERIAL_COLORS: Record<string, { badge: string }> = {
   'Nylon Rettificato': { badge: 'text-emerald-950 border-emerald-800/30 bg-emerald-700/10' },
   'Misto / Ibrido': { badge: 'text-primary border-primary/30 bg-primary/10' },
   'Nylon / Argento (Silver-plated)': { badge: 'text-stone-900 border-stone-600/30 bg-stone-500/10' },
-  'Composito / Dynacore (Silver-plated)': { badge: 'text-cyan-950 border-cyan-800/30 bg-cyan-700/10' },
+  'Composito (Silver-plated)': { badge: 'text-teal-950 border-teal-800/30 bg-teal-700/10' },
+  'Dynacore (Silver-plated)': { badge: 'text-cyan-950 border-cyan-800/30 bg-cyan-700/10' },
   'Gold / Ottone (Brass-plated)': { badge: 'text-amber-900 border-amber-600/30 bg-amber-500/10' },
   'Levigati / Lisci (Polished)': { badge: 'text-indigo-950 border-indigo-800/30 bg-indigo-700/10' },
 };
