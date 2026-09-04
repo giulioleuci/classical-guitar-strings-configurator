@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Layers, Gauge, Scale, ChevronDown, ChevronUp } from 'lucide-react';
+import { Layers, Gauge, ChevronDown, ChevronUp } from 'lucide-react';
 import { useStringLab } from '@/hooks/use-string-lab';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

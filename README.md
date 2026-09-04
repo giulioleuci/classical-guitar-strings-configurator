@@ -51,12 +51,27 @@ npm run preview
 
 ## Deploy
 
-Il progetto è distribuito tramite GitHub Pages. Per aggiornare:
+Il progetto è distribuito tramite GitHub Pages. Per aggiornare tramite script locale:
 
 ```bash
 npm run build
 npx gh-pages -d dist
 ```
+
+### Risoluzione problemi Deploy (GitHub Actions)
+
+Se la pipeline automatica di GitHub Actions fallisce con l'errore:
+> `Branch "main" is not allowed to deploy to github-pages due to environment protection rules.`
+
+È necessario configurare le regole di protezione dell'ambiente su GitHub:
+
+1. Vai sul repository GitHub -> **Settings** (Impostazioni).
+2. Nel menu a sinistra, seleziona **Environments** (Ambienti).
+3. Clicca sull'ambiente **`github-pages`**.
+4. In **Deployment branches and tags** (Rami e tag di deployment):
+   - Seleziona **All branches** per consentire il deploy da qualsiasi ramo, oppure
+   - Aggiungi una regola di deployment branch per il ramo **`main`** (o `master`).
+5. In alternativa, in **Settings** -> **Pages**, assicurati che la sorgente (*Source*) sia impostata su **GitHub Actions**.
 
 ## Licenza
 
