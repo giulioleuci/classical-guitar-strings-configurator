@@ -15,7 +15,7 @@ export class DexieStringRepository implements IStringRepository {
   private async ensureSeeded(): Promise<void> {
     const db = getDB();
     const versionRow = await db.meta.get('data_version');
-    if (versionRow?.value === 3) return;
+    if (versionRow?.value === 4) return;
 
     await db.transaction('rw', db.brands, db.decisionMatrix, db.meta, async () => {
       await db.brands.clear();
@@ -23,7 +23,7 @@ export class DexieStringRepository implements IStringRepository {
       await db.decisionMatrix.clear();
       await db.decisionMatrix.bulkPut(SEED_DATA.decisionMatrix);
       await db.meta.put({ key: 'seeded', value: true });
-      await db.meta.put({ key: 'data_version', value: 3 });
+      await db.meta.put({ key: 'data_version', value: 4 });
       await db.meta.put({ key: 'macroMaterials', value: SEED_DATA.macroMaterials });
       await db.meta.put({ key: 'standardTensions', value: SEED_DATA.standardTensions });
     });
