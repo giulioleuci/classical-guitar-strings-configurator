@@ -71,7 +71,17 @@ export class SavarezStrategy implements INamingStrategy {
     const bassCode = bass.code || '';
     const trebleCode = treble.code || '';
     const tensionCode = tension.code || '';
-    const code = `${bassCode}${trebleCode}${tensionCode}`.trim();
+
+    let code = `${bassCode}${trebleCode}${tensionCode}`;
+    if (bassCode.endsWith('P')) {
+      const base = bassCode.slice(0, -1);
+      code = `${base}${trebleCode}${tensionCode}P`;
+    } else if (bassCode.endsWith('H')) {
+      const base = bassCode.slice(0, -1);
+      code = `${base}${trebleCode}${tensionCode}H`;
+    }
+    code = code.trim();
+
     const explanation =
       `Savarez — Codice formato da: Bassi "${bass.name}" (${bassCode}) + ` +
       `Cantini "${treble.name}" (${trebleCode}) + Tensione "${tension.label}" (${tensionCode}). ` +
@@ -95,6 +105,9 @@ export class DAddarioStrategy implements INamingStrategy {
     // Handle XT series (e.g. XTC45 / XTC45FF)
     if (bass.id === 'd_b4' || bass.code === 'XTC' || bass.name.includes('XT')) {
       bassCode = 'XTC';
+    } else if (bass.id === 'd_b5' || bass.name.includes('Polished') || (bass.material && bass.material.includes('Levigati'))) {
+      if (!trebleCode) trebleCode = 'LP';
+      else trebleCode = `${trebleCode}LP`;
     } else if (bass.id === 'd_b2' || bass.name.includes('Composite Core') || (bass.material && bass.material.includes('Composito'))) {
       // Composite Core series uses 'C' suffix (e.g. EJ45C)
       if (!trebleCode) trebleCode = 'C';
@@ -102,10 +115,19 @@ export class DAddarioStrategy implements INamingStrategy {
       // Dynacore series retains normal codes combined with trebles like FF or TT (e.g. EJ45TT, EJ46FF)
     }
 
-    const code = `${bassCode}${tensionCode}${trebleCode}`.trim();
+    let code = `${bassCode}${tensionCode}${trebleCode}`.trim();
+    if (treble.code === 'R' && bassCode === 'EJ') {
+      if (tensionCode === '45') code = 'EJ30';
+      else if (tensionCode === '46') code = 'EJ31';
+      else if (tensionCode === '44') code = 'EJ29';
+    } else if (treble.code === 'B' && bassCode === 'EJ') {
+      if (tensionCode === '45') code = 'EJ49';
+      else if (tensionCode === '46') code = 'EJ50';
+    }
+
     const explanation =
       `D'Addario — Codice formato da: Serie Bassi "${bass.name}" (${bassCode}) + ` +
-      `Tensione "${tension.label}" (${tensionCode}) + Cantini "${treble.name}" (${trebleCode || 'Clear Nylon standard'}). ` +
+      `Tensione "${tension.label}" (${tensionCode}) + Cantini "${treble.name}" (${treble.code || 'Clear Nylon standard'}). ` +
       `Risultato: ${code}.`;
     const resolved = resolveStringSpecs(treble, bass, tension);
     return { code, explanation, ...resolved };

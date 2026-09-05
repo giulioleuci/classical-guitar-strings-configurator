@@ -14,6 +14,7 @@ export const SEED_DATA: SeedData = {
       'Carbonio (Fluorocarbonio)',
       'Titanio (Titanium Nylon)',
       'Nylon Rettificato',
+      'Nylon Nero',
       'Misto / Ibrido',
     ],
   },
@@ -35,7 +36,7 @@ export const SEED_DATA: SeedData = {
           name: 'New Cristal',
           code: 'C',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Top quality clear nylon trebles called New Cristal. The high characteristics of this nylon give the string its rich, beautiful and clear sound. An excellent and colorful combination with the Cantiga bass strings.',
+          tone: 'Cantini in nylon trasparente di altissima purezza. Timbro ricco, limpido, trasparente e cantabile, con perfetto bilanciamento.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.5, tensionLbs: 16.5 },
@@ -59,7 +60,7 @@ export const SEED_DATA: SeedData = {
           name: 'Alliance (KF)',
           code: 'A',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Composite Alliance trebles, acclaimed for their unique brilliance and sound projection. A fantastic and responsive mix with the Cantiga bass strings.',
+          tone: 'Cantini in fluorocarbonio composito KF. Brillantezza straordinaria, proiezione sonora penetrante, risposta immediata e intonazione impeccabile.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.62, gaugeInch: 0.0244, tensionKg: 8.4, tensionLbs: 18.5 },
@@ -83,7 +84,7 @@ export const SEED_DATA: SeedData = {
           name: 'Creation Mixed',
           code: 'M',
           material: 'Misto / Ibrido',
-          tone: 'Set combining the advantages of nylon for the E.1 and B.2 treble strings (New Cristal) and of Alliance composite for the G.3 string. Ensures a perfect homogeneity and transition between the strings, and a clear sound with a generous tone.',
+          tone: 'Set ibrido che unisce la morbidezza del nylon New Cristal (1ª Mi e 2ª Si) con la brillantezza del carbonio Alliance (3ª Sol), garantendo una transizione omogenea.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.5, tensionLbs: 16.5 },
@@ -109,7 +110,7 @@ export const SEED_DATA: SeedData = {
           name: 'Corum',
           code: '500',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Flessibilità eccellente, grande dinamica e risposta facile',
+          tone: 'Bassi flessibili brevettati: risposta rapida e reattiva al tocco, grande gamma dinamica e timbro caldo e sfumato.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.5, tensionLbs: 16.5 },
@@ -133,7 +134,7 @@ export const SEED_DATA: SeedData = {
           name: 'Cantiga',
           code: '510',
           material: 'Composito (Silver-plated)',
-          tone: 'Cantiga wound strings. The newest Savarez basses increasing your playing sensations. New high-tech materials offering outstanding colors of sound, fast and precise response, incredibly easy playing.',
+          tone: 'Bassi moderni su anima in multifilamento composito. Ricca tavolozza di colori timbrici, risposta precisa e suonabilità fluida.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.6, tensionLbs: 16.8 },
@@ -157,7 +158,7 @@ export const SEED_DATA: SeedData = {
           name: 'Cantiga Premium',
           code: '510P',
           material: 'Composito (Silver-plated)',
-          tone: 'The new Cantiga Premium basses come from the discovery of a new high-performance metal and new raw materials that give them new and very significant characteristics. This metal is associated and wound with the exclusive Cantiga core that have made their worldwide success. They offer an amazing presence of the basses, a dense and deep sound which remain perfectly balanced with the trebles strings. The enriched overtones spectrum offers a bright sound without aggressivity. Extended life and a quick and easy answer in pianissimo as in fortissimo without saturation.',
+          tone: 'Bassi top di gamma con lega metallica speciale su anima Cantiga. Suono profondo e denso (ottimo sul 6° Mi), armonici brillanti non aggressivi, grande tenuta dinamica e longevità raddoppiata.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.7, tensionLbs: 17.0 },
@@ -177,11 +178,30 @@ export const SEED_DATA: SeedData = {
           },
         },
         {
+          id: 's_b6',
+          name: 'Polished Cantiga',
+          code: '510H',
+          material: 'Levigati / Lisci (Polished)',
+          tone: 'Bassi Cantiga in argento puro levigato e rettificato. Riducono a zero i rumori di scorrimento delle dita (squeak), ideali per registrazioni in studio e concerti amplificati.',
+          specs: {
+            R: [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.6, tensionLbs: 16.8 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.89, gaugeInch: 0.0350, tensionKg: 6.6, tensionLbs: 14.6 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.09, gaugeInch: 0.0430, tensionKg: 6.8, tensionLbs: 15.0 },
+            ],
+            J: [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.76, gaugeInch: 0.0300, tensionKg: 8.2, tensionLbs: 18.1 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.1, tensionLbs: 15.7 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.12, gaugeInch: 0.0440, tensionKg: 7.3, tensionLbs: 16.1 },
+            ],
+          },
+        },
+        {
           id: 's_b4',
           name: 'HT Classic',
           code: '540',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Attacco rapido, suono aperto e brillante ideale per repertorio concertistico',
+          tone: 'Bassi tradizionali ad alta tensione: attacco netto, suono aperto, brillante e definito, ideali per repertorio solistico.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.72, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -200,7 +220,7 @@ export const SEED_DATA: SeedData = {
           name: 'Traditional / Soliste',
           code: '520',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Timbro storico morbido, suono vellutato della scuola francese',
+          tone: 'Timbro storico morbido e vellutato, tipico della scuola chitarristica francese classica.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -226,7 +246,7 @@ export const SEED_DATA: SeedData = {
           name: 'Pro-Arté Clear Nylon',
           code: '',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'The original D\'Addario trebles, offering a true-sounding traditional tone with consistent precise intonation.',
+          tone: 'I cantini originali D\'Addario in nylon estruso di precisione laser. Timbro tradizionale autentico, caldo, canoro e intonazione impeccabile.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -250,7 +270,7 @@ export const SEED_DATA: SeedData = {
           name: 'Pro-Arté Carbon',
           code: 'FF',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Ideal combination of tension with a modern, bright, and projecting tone and an unmatched superior intonation not found in other fluorocarbon strings.',
+          tone: 'Cantini in fluorocarbonio ad alta densità. Timbro moderno, brillante, grande proiezione sonora e intonazione superiore lungo tutta la tastiera.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.61, gaugeInch: 0.0240, tensionKg: 8.2, tensionLbs: 18.1 },
@@ -269,7 +289,7 @@ export const SEED_DATA: SeedData = {
           name: 'Titanium Nylon',
           code: 'TT',
           material: 'Titanio (Titanium Nylon)',
-          tone: 'Smooth feel comparable to standard nylon, with a distinctive brighter tone and increased projection.',
+          tone: 'Cantini in poliammide titanio dal tocco setoso. Suono distintivo, più brillante e aperto rispetto al nylon tradizionale, con sustain e proiezione incrementati.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.6, tensionLbs: 16.8 },
@@ -283,6 +303,44 @@ export const SEED_DATA: SeedData = {
             ],
           },
         },
+        {
+          id: 'd_t4',
+          name: 'Rectified Nylon',
+          code: 'R',
+          material: 'Nylon Rettificato',
+          tone: 'Cantini smerigliati con lavorazione micrometrica centerless. Timbro caldo, scuro, pastoso e superficie leggermente texturizzata per una presa salda e massimo controllo del tocco.',
+          specs: {
+            '45': [
+              { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.3, tensionLbs: 16.1 },
+              { stringNumber: 2, note: '2ª Si (B2)', gaugeMm: 0.81, gaugeInch: 0.0320, tensionKg: 5.4, tensionLbs: 11.9 },
+              { stringNumber: 3, note: '3ª Sol (G3)', gaugeMm: 1.02, gaugeInch: 0.0400, tensionKg: 5.3, tensionLbs: 11.7 },
+            ],
+            '46': [
+              { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.72, gaugeInch: 0.0285, tensionKg: 7.6, tensionLbs: 16.8 },
+              { stringNumber: 2, note: '2ª Si (B2)', gaugeMm: 0.83, gaugeInch: 0.0325, tensionKg: 5.6, tensionLbs: 12.3 },
+              { stringNumber: 3, note: '3ª Sol (G3)', gaugeMm: 1.04, gaugeInch: 0.0408, tensionKg: 5.5, tensionLbs: 12.1 },
+            ],
+          },
+        },
+        {
+          id: 'd_t5',
+          name: 'Black Nylon',
+          code: 'B',
+          material: 'Nylon Nero',
+          tone: 'Cantini in nylon nero con suono caldo, vellutato, ricco e corposo, con un attacco morbido e intonazione rigorosa.',
+          specs: {
+            '45': [
+              { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.3, tensionLbs: 16.1 },
+              { stringNumber: 2, note: '2ª Si (B2)', gaugeMm: 0.81, gaugeInch: 0.0320, tensionKg: 5.4, tensionLbs: 11.9 },
+              { stringNumber: 3, note: '3ª Sol (G3)', gaugeMm: 1.02, gaugeInch: 0.0400, tensionKg: 5.2, tensionLbs: 11.5 },
+            ],
+            '46': [
+              { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.72, gaugeInch: 0.0285, tensionKg: 7.7, tensionLbs: 17.0 },
+              { stringNumber: 2, note: '2ª Si (B2)', gaugeMm: 0.83, gaugeInch: 0.0327, tensionKg: 5.7, tensionLbs: 12.6 },
+              { stringNumber: 3, note: '3ª Sol (G3)', gaugeMm: 1.04, gaugeInch: 0.0410, tensionKg: 5.5, tensionLbs: 12.1 },
+            ],
+          },
+        },
       ],
       basses: [
         {
@@ -290,7 +348,7 @@ export const SEED_DATA: SeedData = {
           name: 'Nylon Core (Standard)',
           code: 'EJ',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'The original D\'Addario basses with a multi-filament nylon core for a warm and full-bodied tone.',
+          tone: 'I leggendari bassi Pro-Arté con anima in multifilamento di nylon e avvolgimento argentato. Timbro caldo, rotondo e pieno di corpo.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.2, tensionLbs: 15.9 },
@@ -314,7 +372,7 @@ export const SEED_DATA: SeedData = {
           name: 'Composite Core',
           code: 'EJ',
           material: 'Composito (Silver-plated)',
-          tone: 'Exclusive multi-filament core with a powerful, warm tone that lasts 2-3 times longer than traditional strings.',
+          tone: 'Anima esclusiva in multifilamento composito. Suono potente, caldo e risonante con durata 2-3 volte superiore alle corde tradizionali.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
@@ -333,7 +391,7 @@ export const SEED_DATA: SeedData = {
           name: 'Dynacore',
           code: 'EJ',
           material: 'Dynacore (Silver-plated)',
-          tone: 'Revolutionary twist process on a composite core yields unparalleled intonation, a flexible core with greater projection, and a bold, powerful tone.',
+          tone: 'Esclusivo processo di torsione dell\'anima in composito. Intonazione perfetta, grande flessibilità sotto le dita, proiezione e timbro audace e incisivo.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -352,7 +410,7 @@ export const SEED_DATA: SeedData = {
           name: 'XT Composite (Coated)',
           code: 'XTC',
           material: 'Composito (Silver-plated)',
-          tone: 'Micro-fine coating with a transparent tone and natural feel that lasts four times longer than uncoated strings.',
+          tone: 'Trattamento protettivo idrofobico micro-fine che preserva la brillantezza e la naturale sensazione tattile, con durata fino a 4 volte superiore.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
@@ -363,6 +421,25 @@ export const SEED_DATA: SeedData = {
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.1, tensionLbs: 15.6 },
               { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.3, tensionLbs: 16.0 },
               { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.17, gaugeInch: 0.0460, tensionKg: 7.5, tensionLbs: 16.5 },
+            ],
+          },
+        },
+        {
+          id: 'd_b5',
+          name: 'Lightly Polished',
+          code: 'LP',
+          material: 'Levigati / Lisci (Polished)',
+          tone: 'Anima in composito con superficie semi-levigata per azzerare i rumori di scorrimento delle dita (finger squeak), ideali per incisioni in studio.',
+          specs: {
+            '45': [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.3, tensionLbs: 13.9 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.89, gaugeInch: 0.0350, tensionKg: 6.7, tensionLbs: 14.8 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.12, gaugeInch: 0.0440, tensionKg: 6.8, tensionLbs: 15.0 },
+            ],
+            '46': [
+              { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.2, tensionLbs: 15.9 },
+              { stringNumber: 5, note: '5ª La (A5)', gaugeMm: 0.91, gaugeInch: 0.0360, tensionKg: 7.3, tensionLbs: 16.1 },
+              { stringNumber: 6, note: '6ª Mi (E6)', gaugeMm: 1.17, gaugeInch: 0.0460, tensionKg: 7.4, tensionLbs: 16.3 },
             ],
           },
         },
@@ -383,7 +460,7 @@ export const SEED_DATA: SeedData = {
           name: 'Classic',
           code: 'Classic',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Timbro storico caldo e pastoso sviluppato con Andrés Segovia',
+          tone: 'Cantini storici in nylon tradizionale a tensione media, nati dalla collaborazione con Andrés Segovia. Timbro caldo, intimo, pastoso e ricco di tradizione.',
           specs: {
             STD: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.3, tensionLbs: 16.1 },
@@ -397,7 +474,7 @@ export const SEED_DATA: SeedData = {
           name: 'Imperial',
           code: 'Imperial',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Alta tensione dei cantini per maggiore attacco, definizione e brillantezza',
+          tone: 'Cantini in crystal nylon a tensione medio-alta. Offrono maggiore attacco, definizione, brillantezza e prontezza rispetto ai Classic.',
           specs: {
             STD: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.72, gaugeInch: 0.0285, tensionKg: 7.8, tensionLbs: 17.2 },
@@ -411,7 +488,7 @@ export const SEED_DATA: SeedData = {
           name: 'Regal',
           code: 'Regal',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Extra-alta tensione dei cantini, tocco rigido e massima resistenza',
+          tone: 'Cantini in crystal nylon ad alta tensione. Tocco rigido e solido, massima risonanza, potenza e proiezione solistica da concerto.',
           specs: {
             STD: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.75, gaugeInch: 0.0295, tensionKg: 8.3, tensionLbs: 18.3 },
@@ -425,7 +502,7 @@ export const SEED_DATA: SeedData = {
           name: 'Paragon Carbon',
           code: 'Paragon',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Fluorocarbonio moderno, brillante e penetrante per concertisti',
+          tone: 'Cantini moderni in puro fluorocarbonio. Timbro brillante, penetrante, incisivo e reattività dinamica istantanea.',
           specs: {
             STD: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.61, gaugeInch: 0.0240, tensionKg: 8.5, tensionLbs: 18.7 },
@@ -441,7 +518,7 @@ export const SEED_DATA: SeedData = {
           name: 'Black (Light)',
           code: 'Black',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Tensione leggera, bassi caldi e tocco morbido per strumenti delicati',
+          tone: 'Bassi argentati a tensione leggera. Risposta morbida, tocco fluido e timbro caldo, ideali per strumenti delicati o massimo comfort.',
           specs: {
             STD: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.72, gaugeInch: 0.0285, tensionKg: 6.8, tensionLbs: 15.0 },
@@ -455,7 +532,7 @@ export const SEED_DATA: SeedData = {
           name: 'Red (Medium)',
           code: 'Red',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Media tensione bilanciata, lo standard storico Augustine',
+          tone: 'Bassi argentati a media tensione bilanciata. Lo standard storico di riferimento Augustine per rotondità, calore e corpo.',
           specs: {
             STD: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.75, gaugeInch: 0.0295, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -469,7 +546,7 @@ export const SEED_DATA: SeedData = {
           name: 'Blue (High)',
           code: 'Blue',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Alta tensione dei bassi, massima proiezione e risonanza',
+          tone: 'Bassi argentati ad alta tensione. Massima potenza, proiezione sonora, timbro aperto e profondo con sustain prolungato.',
           specs: {
             STD: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.77, gaugeInch: 0.0305, tensionKg: 8.1, tensionLbs: 17.9 },
@@ -483,7 +560,7 @@ export const SEED_DATA: SeedData = {
           name: 'Gold (Brass)',
           code: 'Gold',
           material: 'Gold / Ottone (Brass-plated)',
-          tone: 'Avvolgimento in ottone dorato, suono rotondo e caldo',
+          tone: 'Bassi con avvolgimento in speciale lega d\'ottone dorato. Timbro particolarmente rotondo, caldo e vellutato con morbidezza d\'attacco.',
           specs: {
             STD: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.2, tensionLbs: 15.9 },
@@ -507,7 +584,7 @@ export const SEED_DATA: SeedData = {
           name: '2001 Concert Series',
           code: '2001',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Concert grade, eccellente purezza di intonazione e calore',
+          tone: 'Cantini di grado concertistico in nylon ad altissima purezza. Intonazione impeccabile, timbro ricco, trasparente e grande flessibilità espressiva.',
           specs: {
             Light: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.9, tensionLbs: 15.2 },
@@ -531,7 +608,7 @@ export const SEED_DATA: SeedData = {
           name: 'Vivace Carbon',
           code: 'Vivace',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Fluorocarbonio ad alta reattività con timbro brillante e ricco',
+          tone: 'Cantini in fluorocarbonio con formulazione esclusiva: uniscono brillantezza e velocità a una piacevole rotondità timbrica.',
           specs: {
             'Medium Hard': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.61, gaugeInch: 0.0240, tensionKg: 8.1, tensionLbs: 17.9 },
@@ -550,7 +627,7 @@ export const SEED_DATA: SeedData = {
           name: '150F Carbon',
           code: '150F',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Altissima densità e penetrazione per solisti da concerto',
+          tone: 'Cantini in carbonio ad altissima densità per solisti e concertisti. Massima penetrazione acustica e volume elevato.',
           specs: {
             Hard: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.64, gaugeInch: 0.0250, tensionKg: 8.9, tensionLbs: 19.6 },
@@ -566,7 +643,7 @@ export const SEED_DATA: SeedData = {
           name: '2001 Series Basses',
           code: '2001',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Risposta fluida, ottimo sustain e intonazione equilibrata',
+          tone: 'Bassi argentati con anima elastica speciale. Risposta fluida ed equilibrata, ottimo sustain e intonazione stabile.',
           specs: {
             Light: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.72, gaugeInch: 0.0285, tensionKg: 6.8, tensionLbs: 15.0 },
@@ -590,7 +667,7 @@ export const SEED_DATA: SeedData = {
           name: 'Vivace Basses',
           code: 'Vivace',
           material: 'Composito (Silver-plated)',
-          tone: 'Progettati con micro-avvolgimento per bilanciarsi con cantini in carbonio',
+          tone: 'Bassi con micro-avvolgimento dinamico studiati appositamente per armonizzarsi alla perfezione con la brillantezza dei cantini in carbonio.',
           specs: {
             'Medium Hard': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.6, tensionLbs: 16.8 },
@@ -609,7 +686,7 @@ export const SEED_DATA: SeedData = {
           name: '900 Golden Superior',
           code: '900',
           material: 'Gold / Ottone (Brass-plated)',
-          tone: 'Bassi in lega dorata, caldi e risonanti con tocco setoso',
+          tone: 'Bassi in speciale lega dorata levigata a specchio. Timbro caldo, rotondo e suonabilità priva di rumori di sfregamento delle dita, ideali per lo studio di registrazione.',
           specs: {
             'Medium Hard': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.3, tensionLbs: 16.1 },
@@ -635,7 +712,7 @@ export const SEED_DATA: SeedData = {
           name: 'Futura (Nylon)',
           code: 'Futura',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Vellutato, rotondo ed elegante nella tradizione liutaria spagnola',
+          tone: 'Cantini in nylon trasparente di alta precisione. Timbro vellutato, rotondo ed elegante nella più pura tradizione liutaria spagnola.',
           specs: {
             Normal: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.2, tensionLbs: 15.9 },
@@ -654,7 +731,7 @@ export const SEED_DATA: SeedData = {
           name: 'JG Carbon/Nylon',
           code: 'Carbon/Nylon',
           material: 'Misto / Ibrido',
-          tone: 'Sviluppato con Jorge Morel: 1ª Nylon, 2ª e 3ª Carbonio per equilibrio',
+          tone: 'Set ibrido del Maestro Juan Grecos: 1ª in nylon per dolcezza cantabile, 2ª e 3ª in carbonio per proiezione e brillantezza equilibrata.',
           specs: {
             Normal: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.2, tensionLbs: 15.9 },
@@ -673,7 +750,7 @@ export const SEED_DATA: SeedData = {
           name: 'JG Titanium/Carbon',
           code: 'Titanium/Carbon',
           material: 'Titanio (Titanium Nylon)',
-          tone: '1ª e 2ª Titanio ad alta definizione, 3ª Carbonio brillante',
+          tone: 'Configurazione da concerto: 1ª e 2ª in titanio per definizione e corpo, 3ª in carbonio per una chiarezza brillante e risonante.',
           specs: {
             High: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.7, tensionLbs: 17.0 },
@@ -689,7 +766,7 @@ export const SEED_DATA: SeedData = {
           name: 'Sonata (SN)',
           code: 'SN',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Bassi rotondi, argentati e stabili per repertorio classico',
+          tone: 'Bassi argentati a grande spessore sonoro. Timbro rotondo, pieno e pastoso con finitura anti-ossidante brevettata.',
           specs: {
             Normal: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.3, tensionLbs: 16.1 },
@@ -708,7 +785,7 @@ export const SEED_DATA: SeedData = {
           name: 'Dynamic Silver (DS)',
           code: 'DS',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Elevato spessore di placcatura in argento puro per bassi limpidi',
+          tone: 'Bassi placcati con spesso strato di argento puro. Risposta limpida, armonicamente ricca, con grande dinamica e lunga durata.',
           specs: {
             Normal: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -727,7 +804,7 @@ export const SEED_DATA: SeedData = {
           name: 'JG Soloist Basses',
           code: 'JG',
           material: 'Composito (Silver-plated)',
-          tone: 'Progettati per chitarristi da concerto con massima tenuta di dinamica',
+          tone: 'Bassi per concertisti con tecnologia Dynamic Sound. Massima tenuta dinamica sotto attacchi energici, timbro autorevole e sustain prolungato.',
           specs: {
             High: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.76, gaugeInch: 0.0300, tensionKg: 8.2, tensionLbs: 18.1 },
@@ -752,7 +829,7 @@ export const SEED_DATA: SeedData = {
       tension: 'Media (Normal / Medium)',
       recommendations: {
         savarez: '500CR / 520R Corum Rouge',
-        daddario: 'EJ45 Pro-Arté',
+        daddario: 'EJ45 Pro-Arté Clear Nylon',
         augustine: 'Classic Red',
         labella: '2001 Medium Hard',
         royalclassic: 'Sonata Normal',
@@ -760,26 +837,26 @@ export const SEED_DATA: SeedData = {
     },
     {
       id: 'dm_2',
-      toneGoal: 'Suono tradizionale con maggiore proiezione e risposta netta',
+      toneGoal: 'Suono tradizionale con maggiore proiezione, attacco e definizione',
       trebleMat: 'Nylon Tradizionale (Clear)',
       bassMat: 'Nylon / Argento (Silver-plated)',
       tension: 'Alta (High / Hard)',
       recommendations: {
         savarez: '540CR / 500CJ Corum Jaune',
         daddario: 'EJ46 Pro-Arté Hard',
-        augustine: 'Classic Blue / Imperial Blue',
+        augustine: 'Imperial Blue / Regal Blue',
         labella: '2001 Hard',
         royalclassic: 'Sonata High',
       },
     },
     {
       id: 'dm_3',
-      toneGoal: 'Suono brillante, moderno, massima proiezione e sustain (Carbonio)',
+      toneGoal: 'Suono moderno brillante, penetrante, massima proiezione e sustain (Carbonio)',
       trebleMat: 'Carbonio (Fluorocarbonio)',
-      bassMat: 'Dynacore (Silver-plated)',
+      bassMat: 'Composito (Silver-plated)',
       tension: 'Alta (High / Hard)',
       recommendations: {
-        savarez: '510AJ Cantiga Alliance / 510AJP Premium',
+        savarez: '510AJP Cantiga Premium Alliance',
         daddario: 'EJ46FF Carbon Dynacore',
         augustine: 'Paragon Blue',
         labella: 'Vivace Hard / 150F',
@@ -802,18 +879,31 @@ export const SEED_DATA: SeedData = {
     },
     {
       id: 'dm_5',
-      toneGoal: 'Risposta dei bassi elevata con timbro audace e proiettato (Composito)',
+      toneGoal: 'Bassi autorevoli e proiettati con cantini caldi (Composito + Nylon)',
       trebleMat: 'Nylon Tradizionale (Clear)',
       bassMat: 'Composito (Silver-plated)',
       tension: 'Media (Normal / Medium)',
       recommendations: {
-        savarez: '510CR Cantiga',
+        savarez: '510CR Cantiga New Cristal / 510CRP Premium',
         daddario: 'EJ45C Pro-Arté Composite',
         augustine: 'Classic Red',
         labella: '2001 Medium Hard',
         royalclassic: 'Sonata Normal',
       },
     },
+    {
+      id: 'dm_6',
+      toneGoal: 'Registrazioni in studio e concerti amplificati senza rumori di sfregamento (Levigati)',
+      trebleMat: 'Nylon Tradizionale (Clear)',
+      bassMat: 'Levigati / Lisci (Polished)',
+      tension: 'Media (Normal / Medium)',
+      recommendations: {
+        savarez: '510CRH Polished Cantiga New Cristal',
+        daddario: 'EJ45LP Lightly Polished Pro-Arté',
+        augustine: 'Classic Red',
+        labella: '900 Golden Superior',
+        royalclassic: 'Sonata Normal',
+      },
+    },
   ],
 };
-
