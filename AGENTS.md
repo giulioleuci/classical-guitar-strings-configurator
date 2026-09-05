@@ -40,11 +40,15 @@ src/
 
 ```bash
 npm run dev        # Start dev server (Vite)
-npm run build      # Type-check + production build
-npm run lint       # ESLint
-npm run typecheck  # tsc --noEmit
+npm run build      # tsc -b && vite build && cp dist/index.html dist/404.html
+npm run lint       # ESLint (eslint .)
+npm run typecheck  # tsc --noEmit -p tsconfig.app.json
 npm run preview    # Preview production build
+npm run deploy     # build && gh-pages -d dist
 ```
+
+- No test framework is installed — no test command exists.
+- `build` copies `dist/index.html` to `dist/404.html` so deep links work on GitHub Pages (SPA fallback).
 
 ## UI Stack
 
@@ -64,7 +68,9 @@ npm run preview    # Preview production build
 ## Important Notes
 
 - `@/` alias resolves to `./src/` (vite.config.ts + tsconfig)
-- Data version tracked in IndexedDB meta table (currently version 2)
+- Dexie DB schema is at **version 1** (database.ts). Bumping the version requires a migration.
 - UI text is in Italian (luthiery terminology)
-- PWA-enabled with service worker (`public/sw.js`)
-- `noUnusedLocals` and `noUnusedParameters` are disabled in tsconfig
+- PWA-enabled with service worker (`public/sw.js`); registered in App.tsx
+- `noUnusedLocals` and `noUnusedParameters` are disabled in tsconfig (unused vars/warnings won't fail typecheck)
+- Deploy is GitHub Pages: automatic via `.github/workflows/deploy.yml` (push to main), or manual via `npm run deploy`
+- `@supabase/supabase-js` is an unused dependency — do not assume a backend exists; data lives entirely in IndexedDB

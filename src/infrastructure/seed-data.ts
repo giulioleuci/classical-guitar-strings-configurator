@@ -35,7 +35,7 @@ export const SEED_DATA: SeedData = {
           name: 'New Cristal',
           code: 'C',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Caldo, rotondo, timbro classico e morbido al tocco',
+          tone: 'Top quality clear nylon trebles called New Cristal. The high characteristics of this nylon give the string its rich, beautiful and clear sound. An excellent and colorful combination with the Cantiga bass strings.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.5, tensionLbs: 16.5 },
@@ -59,7 +59,7 @@ export const SEED_DATA: SeedData = {
           name: 'Alliance (KF)',
           code: 'A',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Brillante, risposta immediata, grande proiezione e sustain',
+          tone: 'Composite Alliance trebles, acclaimed for their unique brilliance and sound projection. A fantastic and responsive mix with the Cantiga bass strings.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.62, gaugeInch: 0.0244, tensionKg: 8.4, tensionLbs: 18.5 },
@@ -83,7 +83,7 @@ export const SEED_DATA: SeedData = {
           name: 'Creation Mixed',
           code: 'M',
           material: 'Misto / Ibrido',
-          tone: 'Ibrido ottimizzato: 1ª e 2ª New Cristal per calore, 3ª Alliance per nitidezza',
+          tone: 'Set combining the advantages of nylon for the E.1 and B.2 treble strings (New Cristal) and of Alliance composite for the G.3 string. Ensures a perfect homogeneity and transition between the strings, and a clear sound with a generous tone.',
           specs: {
             R: [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.5, tensionLbs: 16.5 },
@@ -133,7 +133,7 @@ export const SEED_DATA: SeedData = {
           name: 'Cantiga',
           code: '510',
           material: 'Composito (Silver-plated)',
-          tone: 'Anima moderna con ampio spettro armonico e sustain prolungato',
+          tone: 'Cantiga wound strings. The newest Savarez basses increasing your playing sensations. New high-tech materials offering outstanding colors of sound, fast and precise response, incredibly easy playing.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.6, tensionLbs: 16.8 },
@@ -157,7 +157,7 @@ export const SEED_DATA: SeedData = {
           name: 'Cantiga Premium',
           code: '510P',
           material: 'Composito (Silver-plated)',
-          tone: 'Raffinamento estremo delle armoniche, precisione e durata eccezionale',
+          tone: 'The new Cantiga Premium basses come from the discovery of a new high-performance metal and new raw materials that give them new and very significant characteristics. This metal is associated and wound with the exclusive Cantiga core that have made their worldwide success. They offer an amazing presence of the basses, a dense and deep sound which remain perfectly balanced with the trebles strings. The enriched overtones spectrum offers a bright sound without aggressivity. Extended life and a quick and easy answer in pianissimo as in fortissimo without saturation.',
           specs: {
             R: [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.7, tensionLbs: 17.0 },
@@ -226,7 +226,7 @@ export const SEED_DATA: SeedData = {
           name: 'Pro-Arté Clear Nylon',
           code: '',
           material: 'Nylon Tradizionale (Clear)',
-          tone: 'Caldo, rotondo e intonazione laser controllata',
+          tone: 'The original D\'Addario trebles, offering a true-sounding traditional tone with consistent precise intonation.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -250,7 +250,7 @@ export const SEED_DATA: SeedData = {
           name: 'Pro-Arté Carbon',
           code: 'FF',
           material: 'Carbonio (Fluorocarbonio)',
-          tone: 'Brillante, tagliente, proiezione potente e attacco rapido',
+          tone: 'Ideal combination of tension with a modern, bright, and projecting tone and an unmatched superior intonation not found in other fluorocarbon strings.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.61, gaugeInch: 0.0240, tensionKg: 8.2, tensionLbs: 18.1 },
@@ -269,7 +269,7 @@ export const SEED_DATA: SeedData = {
           name: 'Titanium Nylon',
           code: 'TT',
           material: 'Titanio (Titanium Nylon)',
-          tone: 'Timbro contemporaneo, chiaro e trasparente senza asprezze metalliche',
+          tone: 'Smooth feel comparable to standard nylon, with a distinctive brighter tone and increased projection.',
           specs: {
             '45': [
               { stringNumber: 1, note: '1ª Mi (E1)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.6, tensionLbs: 16.8 },
@@ -290,7 +290,7 @@ export const SEED_DATA: SeedData = {
           name: 'Nylon Core (Standard)',
           code: 'EJ',
           material: 'Nylon / Argento (Silver-plated)',
-          tone: 'Caldo, bilanciato ed equilibrato su tutta la tastiera',
+          tone: 'The original D\'Addario basses with a multi-filament nylon core for a warm and full-bodied tone.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.74, gaugeInch: 0.0290, tensionKg: 7.2, tensionLbs: 15.9 },
@@ -314,7 +314,7 @@ export const SEED_DATA: SeedData = {
           name: 'Composite Core',
           code: 'EJ',
           material: 'Composito (Silver-plated)',
-          tone: 'Anima in composito per risposta dei bassi elevata, timbro audace e proiettato',
+          tone: 'Exclusive multi-filament core with a powerful, warm tone that lasts 2-3 times longer than traditional strings.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
@@ -333,7 +333,7 @@ export const SEED_DATA: SeedData = {
           name: 'Dynacore',
           code: 'EJ',
           material: 'Dynacore (Silver-plated)',
-          tone: 'Esclusiva anima multifilamento Dynacore per intonazione imbattibile, risposta dinamica flessibile e suono ricco',
+          tone: 'Revolutionary twist process on a composite core yields unparalleled intonation, a flexible core with greater projection, and a bold, powerful tone.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 7.4, tensionLbs: 16.3 },
@@ -352,7 +352,7 @@ export const SEED_DATA: SeedData = {
           name: 'XT Composite (Coated)',
           code: 'XTC',
           material: 'Composito (Silver-plated)',
-          tone: 'Trattamento idrofobo XT con anima in composito per durata estesa e suono naturale',
+          tone: 'Micro-fine coating with a transparent tone and natural feel that lasts four times longer than uncoated strings.',
           specs: {
             '45': [
               { stringNumber: 4, note: '4ª Re (D4)', gaugeMm: 0.71, gaugeInch: 0.0280, tensionKg: 6.2, tensionLbs: 13.6 },
